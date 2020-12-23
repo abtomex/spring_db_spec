@@ -60,7 +60,7 @@ public class HibernateCourseDAO implements CourseDAO {
 	@Override
 	public List<Course> findByTitle(String title) {
 		return getSessionFactory().getCurrentSession().
-				createQuery("from Course с where title LIKE :title").
+				createQuery("from Course с where upper(title) LIKE upper(:title)").
 				setString("title", "%"+title+"%").list(); 	 // HQL
 	}
 	
